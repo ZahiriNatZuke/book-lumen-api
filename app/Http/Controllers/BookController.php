@@ -12,6 +12,16 @@ use Carbon\Carbon;
 class BookController extends Controller
 {
 
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('checkUuid:book/', ['except' => ['index', 'create']]);
+    }
+
     public function index(): JsonResponse
     {
         return response()->json(['data' => Book::all()]);
