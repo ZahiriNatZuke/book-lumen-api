@@ -1,6 +1,6 @@
 <?php
 
-/** @var \Laravel\Lumen\Routing\Router $router */
+/** @var Router $router */
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +13,14 @@
 |
 */
 
+use Laravel\Lumen\Routing\Router;
+
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->get('/book', 'BookController@index');
+$router->get('/book/{id}', 'BookController@show');
+$router->post('/book', 'BookController@create');
+$router->delete('/book/{id}', 'BookController@delete');
+$router->post('/book/{id}', 'BookController@update');
