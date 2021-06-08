@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\CheckValidUuid;
+use Flipbox\LumenGenerator\LumenGeneratorServiceProvider;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -97,6 +98,7 @@ $app->routeMiddleware([
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
+$app->register(LumenGeneratorServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
