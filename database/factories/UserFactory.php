@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use JetBrains\PhpStorm\ArrayShape;
 
 class UserFactory extends Factory
 {
@@ -19,7 +20,7 @@ class UserFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    #[ArrayShape(['name' => "string", 'email' => "string", 'password' => "mixed"])] public function definition(): array
     {
         return [
             'name' => $this->faker->name,

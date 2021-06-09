@@ -22,11 +22,22 @@ class BookController extends Controller
         $this->middleware('checkUuid:book/', ['except' => ['index', 'create']]);
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return JsonResponse
+     */
     public function index(): JsonResponse
     {
         return response()->json(['data' => Book::all()]);
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function create(Request $request): JsonResponse
     {
         if ($request->hasFile('image')) {
@@ -49,11 +60,23 @@ class BookController extends Controller
         }
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param string $id
+     * @return JsonResponse
+     */
     public function show(string $id): JsonResponse
     {
         return response()->json(['data' => Book::query()->findOrFail($id)]);
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param string $id
+     * @return JsonResponse
+     */
     public function delete(string $id): JsonResponse
     {
         $book = Book::query()->findOrFail($id);
@@ -64,6 +87,13 @@ class BookController extends Controller
         return response()->json(['msg' => 'Book deleted successfully!']);
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param string $id
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function update(string $id, Request $request): JsonResponse
     {
         $book = Book::query()->findOrFail($id);

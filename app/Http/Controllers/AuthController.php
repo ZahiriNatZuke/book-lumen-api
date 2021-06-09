@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Http;
 class AuthController extends Controller
 {
     /**
+     * Login a user on system.
+     *
      * @param Request $request
      * @return JsonResponse|ResponseInterface
      */
@@ -38,6 +40,8 @@ class AuthController extends Controller
     }
 
     /**
+     * Register a new user on system.
+     *
      * @throws ValidationException
      */
     public function register(Request $request): JsonResponse
@@ -65,6 +69,8 @@ class AuthController extends Controller
     }
 
     /**
+     * Logout a user on system.
+     *
      * @return JsonResponse
      */
     public function logout(): JsonResponse

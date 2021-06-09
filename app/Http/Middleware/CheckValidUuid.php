@@ -23,10 +23,9 @@ class CheckValidUuid
         $url = ltrim($request->getUri(), env('APP_URL'));
         $uuid = ltrim($url, $baseUrl);
 
-        if (Uuid::isValid($uuid)) {
+        if (Uuid::isValid($uuid))
             return $next($request);
-        } else {
+        else
             return response()->json(['error' => 'The UUID is not valid.'], 400);
-        }
     }
 }
