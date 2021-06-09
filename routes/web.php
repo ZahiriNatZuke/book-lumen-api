@@ -19,8 +19,15 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->get('/book', 'BookController@index');
-$router->get('/book/{id}', 'BookController@show');
-$router->post('/book', 'BookController@create');
-$router->delete('/book/{id}', 'BookController@delete');
-$router->post('/book/{id}', 'BookController@update');
+$router->post('/login', 'AuthController@login');
+$router->post('/register', 'AuthController@register');
+
+$router->group(['middleware' => 'auth'], function () use ($router) {
+    $router->post('/logout', 'AuthController@logout');
+
+    $router->get('/book', 'BookController@index');
+    $router->get('/book/{id}', 'BookController@show');
+    $router->post('/book', 'BookController@create');
+    $router->delete('/book/{id}', 'BookController@delete');
+    $router->post('/book/{id}', 'BookController@update');
+});

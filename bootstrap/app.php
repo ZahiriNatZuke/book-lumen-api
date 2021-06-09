@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\CheckValidUuid;
+use Dusterio\LumenPassport\LumenPassport;
 use Flipbox\LumenGenerator\LumenGeneratorServiceProvider;
 
 require_once __DIR__ . '/../vendor/autoload.php';
@@ -62,7 +63,8 @@ $app->singleton(
 |
 */
 
-$app->configure('app');
+$app->configure('auth');
+$app->configure('service');
 
 /*
 |--------------------------------------------------------------------------
@@ -99,6 +101,8 @@ $app->routeMiddleware([
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 $app->register(LumenGeneratorServiceProvider::class);
+$app->register(Laravel\Passport\PassportServiceProvider::class);
+$app->register(Dusterio\LumenPassport\PassportServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
@@ -110,6 +114,8 @@ $app->register(LumenGeneratorServiceProvider::class);
 | can respond to, as well as the controllers that may handle them.
 |
 */
+
+LumenPassport::routes($app, ['prefix' => 'v1/oauth']);
 
 $app->router->group([
     'namespace' => 'App\Http\Controllers',
