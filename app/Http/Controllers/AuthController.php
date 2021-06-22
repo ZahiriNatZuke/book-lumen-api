@@ -57,8 +57,10 @@ class AuthController extends Controller
 
         $data = $result->validate();
 
-        $user = new User($data);
-        $user['password'] = app('hash')->make($data['password']);
+        $user = new User();
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        $user->password = app('hash')->make($data['password']);
 
         try {
             $user->save();

@@ -48,10 +48,9 @@ class BookController extends Controller
             $destinyFolder = './uploads/';
             $image->move($destinyFolder, $newName);
 
-            $new_Book = new Book([
-                'title' => $request->get('title'),
-                'image' => ltrim($destinyFolder, '.') . $newName
-            ]);
+            $new_Book = new Book();
+            $new_Book->title = $request->get('title');
+            $new_Book->image = ltrim($destinyFolder, '.') . $newName;
             $new_Book->save();
 
             return response()->json(['data' => $new_Book], 201);

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\CheckValidUuid;
+use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use Dusterio\LumenPassport\LumenPassport;
 use Flipbox\LumenGenerator\LumenGeneratorServiceProvider;
 
@@ -103,6 +104,8 @@ $app->routeMiddleware([
 $app->register(LumenGeneratorServiceProvider::class);
 $app->register(Laravel\Passport\PassportServiceProvider::class);
 $app->register(Dusterio\LumenPassport\PassportServiceProvider::class);
+
+if ($app->environment() !== 'production') $app->register(IdeHelperServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
